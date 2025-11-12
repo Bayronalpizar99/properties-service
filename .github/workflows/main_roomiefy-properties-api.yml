@@ -25,6 +25,13 @@ jobs:
           distribution: 'microsoft'
 
       - name: Build with Maven
+        env:
+          # Variables de entorno para los tests
+          # Los tests usarán H2 en memoria con el perfil "test"
+          SPRING_PROFILES_ACTIVE: test
+          DB_URL: jdbc:h2:mem:testdb
+          DB_USERNAME: sa
+          DB_PASSWORD: ""
         run: mvn clean install
 
       - name: Upload artifact for deployment job
@@ -60,4 +67,3 @@ jobs:
           app-name: 'roomiefy-properties-api'
           slot-name: 'Production'
           package: '*.jar'
-          
