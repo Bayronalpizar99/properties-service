@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/properties")
+@RequestMapping("/properties")
 public class PropertyController {
 
     private final PropertyServicePort propertyServicePort;
