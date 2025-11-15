@@ -64,7 +64,4 @@ Todos los endpoints se publican desde la raíz `/`. La siguiente tabla resume el
 - SQL Server (driver `mssql-jdbc`)
 - Lombok para reducir código getters/setters
 
-## Próximos pasos sugeridos
-1. Añadir DTOs y validaciones (`jakarta.validation`) para controlar la entrada de datos y separar la entidad JPA del API público.
-2. Incorporar autenticación/autorización para restringir operaciones por `ownerId`.
-3. Agregar pruebas unitarias para `PropertyServiceImpl` y pruebas de integración para el controlador utilizando `MockMvc`.
+
