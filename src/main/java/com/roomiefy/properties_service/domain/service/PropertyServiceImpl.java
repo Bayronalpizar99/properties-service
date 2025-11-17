@@ -3,6 +3,8 @@ package com.roomiefy.properties_service.domain.service;
 import com.roomiefy.properties_service.domain.model.Property;
 import com.roomiefy.properties_service.domain.port.inbound.PropertyServicePort;
 import com.roomiefy.properties_service.domain.port.outbound.PropertyRepositoryPort;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification; 
 
 import java.util.List;
@@ -27,15 +29,14 @@ public class PropertyServiceImpl implements PropertyServicePort {
     }
 
     @Override
-    public List<Property> getAllProperties(String search, Double priceMax, Integer bedrooms, String amenities) {
+    public Page<Property> getAllProperties(String search, Double priceMax, Integer bedrooms, String amenities, Pageable pageable) {
         // 1. Creamos la especificación dinámica con los filtros
         Specification<Property> spec = PropertySpecification.withFilters(search, priceMax, bedrooms, amenities);
         
-        // 2. Usamos el nuevo método .findAll(spec) que obtuvimos del JpaSpecificationExecutor
-        return propertyRepositoryPort.findAll(spec);
+        // 2. Ejecutamos la consulta paginada usando el executor de especificaciones
+        return propertyRepositoryPort.findAll(spec, pageable);
     }
 
-    // 👇 INTEGRACIÓN PARA "MIS PROPIEDADES" AÑADIDA AQUÍ
     @Override
     public List<Property> getPropertiesByOwnerId(String ownerId) {
         // 3. Simplemente llamamos al nuevo método del repositorio
