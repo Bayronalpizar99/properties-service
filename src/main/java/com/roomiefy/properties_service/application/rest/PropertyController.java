@@ -27,7 +27,8 @@ public class PropertyController {
     public Property createProperty(@RequestBody Property property) {
         return propertyServicePort.createProperty(property);
     }
-
+//Este método expone un endpoint HTTP GET que permite obtener una lista paginada de propiedades (Property), 
+//aplicando filtros opcionales como búsqueda, precio máximo, dormitorios y amenidades.
     @GetMapping
     public Page<Property> getAllProperties(
             @RequestParam(required = false) String search,
@@ -39,7 +40,8 @@ public class PropertyController {
     ) {
         int safePage = Math.max(page, 0);
         int safeSize = Math.min(Math.max(size, 1), 100); // Evita tamaños descontrolados
-        Pageable pageable = PageRequest.of(safePage, safeSize);
+        //Este parámetro le dice a Spring: "Por favor, busca page y size en la URL y crea un objeto de paginación con ellos".
+        Pageable pageable = PageRequest.of(safePage, safeSize); 
         return propertyServicePort.getAllProperties(search, priceMax, bedrooms, amenities, pageable);
     }
     

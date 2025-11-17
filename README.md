@@ -31,6 +31,7 @@ Otros datos relevantes:
 - Puerto HTTP expuesto: `8081` (configurable con `server.port`).
 - Dialecto: `org.hibernate.dialect.SQLServerDialect`.
 - Perfil `test`: cargado automáticamente en las pruebas para aislar la configuración.
+- Certificados cliente: establece `CLIENT_CERT_VALIDATION_ENABLED=true` y una lista de huellas (`CLIENT_CERT_THUMBPRINTS=FFAA...,BBCC...`) para exigir el certificado que envía API Management en la cabecera `X-ARR-ClientCert`.
 
 ## Ejecución local
 ```bash
